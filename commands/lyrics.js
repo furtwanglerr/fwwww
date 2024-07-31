@@ -13,7 +13,7 @@ async function lyrics(client, interaction) {
             const errorEmbed = new EmbedBuilder()
                 .setColor('#ff0000')
                 .setTitle('Error')
-                .setDescription('❌ No active player found.');
+                .setDescription('❌ 재생중인 음악 없음');
 
             await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
             return;
@@ -78,12 +78,12 @@ async function lyrics(client, interaction) {
                     });
             }
         } catch (err) {
-            lyricEmbed.setDescription(`❌ No lyrics were found!`);
+            lyricEmbed.setDescription(`가사없음`);
             return interaction.editReply({ embeds: [lyricEmbed], ephemeral: true });
         }
 
         if (!lyricSong) {
-            lyricEmbed.setDescription(`❌ No lyrics were found!`);
+            lyricEmbed.setDescription(`가사없음`);
             return interaction.editReply({ embeds: [lyricEmbed], ephemeral: true });
         }
 
@@ -92,7 +92,7 @@ async function lyrics(client, interaction) {
 
         const generateEmbed = (page) => {
             return new EmbedBuilder()
-                .setTitle(`${lyricTitle} by ${lyricAuthor} Lyrics`)
+                .setTitle(`${lyricTitle} ${lyricAuthor} `)
                 .setDescription(lyricsArray[page])
                 .setColor(config.embedColor)
                 .setThumbnail(lyricThumbnail)
@@ -158,17 +158,17 @@ async function lyrics(client, interaction) {
 
     } catch (error) {
         console.error('Error fetching lyrics:', error);
-        await interaction.editReply({ content: 'An error occurred while fetching the lyrics.', ephemeral: true });
+        await interaction.editReply({ content: '에러', ephemeral: true });
     }
 }
 
 module.exports = {
     name: "lyrics",
-    description: "Displays the lyrics of the current song",
+    description: "가사",
     permissions: "0x0000000000000800",
     options: [{
         name: 'search',
-        description: 'Search query for lyrics',
+        description: '가사검색',
         type: ApplicationCommandOptionType.String,
         required: false
     }],
