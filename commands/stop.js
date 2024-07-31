@@ -9,7 +9,7 @@ async function stop(client, interaction) {
             const errorEmbed = new EmbedBuilder()
                 .setColor('#ff0000')
                 .setTitle('Error')
-                .setDescription('❌ No active player found.');
+                .setDescription('재생중인 곡 없음');
 
             await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
             return;
@@ -20,7 +20,7 @@ async function stop(client, interaction) {
 
         const embed = new EmbedBuilder()
             .setColor(config.embedColor)
-            .setDescription('**⏹️ Playback has been stopped and player destroyed!**');
+            .setDescription('**재생중인 곡을 멈춤**');
 
         await interaction.reply({ embeds: [embed] });
 
@@ -29,7 +29,7 @@ async function stop(client, interaction) {
         const errorEmbed = new EmbedBuilder()
             .setColor('#ff0000')
             .setTitle('Error')
-            .setDescription('❌ An error occurred while processing your request.');
+            .setDescription('에러.');
 
         await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
     }
@@ -37,7 +37,7 @@ async function stop(client, interaction) {
 
 module.exports = {
     name: "stop",
-    description: "Stop the current song and destroy the player",
+    description: "재생중인 곡 멈추기",
     permissions: "0x0000000000000800",
     options: [],
     run: stop
