@@ -10,32 +10,32 @@ async function volume(client, interaction) {
             const errorEmbed = new EmbedBuilder()
                 .setColor('#ff0000')
                 .setTitle('Error')
-                .setDescription('❌ No active player found.');
+                .setDescription('재생중인 곡 없음');
 
             await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
             return;
         }
 
         if (volume < 0 || volume > 100) {
-            return interaction.reply({ content: 'Volume level must be between 0 and 100.', ephemeral: true });
+            return interaction.reply({ content: '0 ~ 100 사이의 값으로 볼륨을 조정', ephemeral: true });
         }
 
         player.setVolume(volume);
 
         const embed = new EmbedBuilder()
             .setColor(config.embedColor)
-            .setDescription(`🔊 Volume has been set to **${volume}%**`);
+            .setDescription(`볼륨설정됨: **${volume}%**`);
 
         return interaction.reply({ embeds: [embed] });
     } catch (error) {
         console.error('Error setting volume:', error);
-        await interaction.reply({ content: 'An error occurred while setting the volume.', ephemeral: true });
+        await interaction.reply({ content: '에러', ephemeral: true });
     }
 }
 
 module.exports = {
     name: "volume",
-    description: "Set the volume of the current song",
+    description: "재생중인 음악의 볼륨설정",
     permissions: "0x0000000000000800",
     options: [{
         name: 'level',
