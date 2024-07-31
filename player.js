@@ -59,7 +59,7 @@ function initializePlayer(client) {
                 name: 'Now Playing',
                 iconURL: config.MusicIcon
             })
-            .setDescription('🎶 **Controls:**\n 🔁 `Loop`, ❌ `Disable`, ⏭️ `Skip`, 📜 `Queue`, 🗑️ `Clear`\n ⏹️ `Stop`, ⏸️ `Pause`, ▶️ `Resume`, 🔊 `Vol +`, 🔉 `Vol -`')
+            .setDescription('**설정:**\n 🔁 `반복재생`, ❌ `비활성화`, ⏭️ `스킵`, 📜 `리스트`, 🗑️ `비우기`\n ⏹️ `끄기`, ⏸️ `멈추기`, ▶️ `재실행`, 🔊 `+음량`, 🔉 `-음량`')
             .setImage('attachment://musicard.png')
             .setColor(config.embedColor);
 
@@ -86,7 +86,7 @@ function initializePlayer(client) {
             if (!voiceChannel || voiceChannel.id !== playerChannel) {
                 const vcEmbed = new EmbedBuilder()
                     .setColor(config.embedColor)
-                    .setDescription('🔒 **You need to be in the same voice channel to use the controls!**');
+                    .setDescription('재생중인 음악을 설정하려면 음성채널에 참여해야함**');
                 const sentMessage = await channel.send({ embeds: [vcEmbed] });
                 setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
                 return;
@@ -98,7 +98,7 @@ function initializePlayer(client) {
                 player.stop();
                 const skipEmbed = new EmbedBuilder()
                     .setColor(config.embedColor)
-                    .setTitle("⏭️ **Player will play the next song!**")
+                    .setTitle("⏭️ **다음 곡 트는중..**")
                     .setTimestamp();
 
                 const sentMessage = await channel.send({ embeds: [skipEmbed] });
@@ -107,11 +107,11 @@ function initializePlayer(client) {
                 disableLoop(player, channel);
             } else if (i.customId === 'showQueue') {
                 const queueMessage = queueNames.length > 0 ?
-                    `🎵 **Now Playing:**\n${formatTrack(queueNames[0])}\n\n📜 **Queue:**\n${queueNames.slice(1).map((song, index) => `${index + 1}. ${formatTrack(song)}`).join('\n')}` :
-                    "The queue is empty.";
+                    `🎵 **현재재생중:**\n${formatTrack(queueNames[0])}\n\n📜 **리스트:**\n${queueNames.slice(1).map((song, index) => `${index + 1}. ${formatTrack(song)}`).join('\n')}` :
+                    "리스트가 비었음";
                 const queueEmbed = new EmbedBuilder()
                     .setColor(config.embedColor)
-                    .setTitle("📜 **Current Queue**")
+                    .setTitle("📜 **현재 리스트**")
                     .setDescription(queueMessage);
 
                 const sentMessage = await channel.send({ embeds: [queueEmbed] });
@@ -120,7 +120,7 @@ function initializePlayer(client) {
                 clearQueue(player);
                 const clearQueueEmbed = new EmbedBuilder()
                     .setColor(config.embedColor)
-                    .setTitle("🗑️ **Queue has been cleared!**")
+                    .setTitle("🗑️ **리스트가 비워짐**")
                     .setTimestamp();
 
                 const sentMessage = await channel.send({ embeds: [clearQueueEmbed] });
@@ -130,7 +130,7 @@ function initializePlayer(client) {
                 player.destroy();
                 const stopEmbed = new EmbedBuilder()
                     .setColor(config.embedColor)
-                    .setDescription('⏹️ **Playback has been stopped and player destroyed!**');
+                    .setDescription('⏹️ **재생중인 음악을 끔**');
 
                 const sentMessage = await channel.send({ embeds: [stopEmbed] });
                 setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
@@ -138,7 +138,7 @@ function initializePlayer(client) {
                 if (player.paused) {
                     const alreadyPausedEmbed = new EmbedBuilder()
                         .setColor(config.embedColor)
-                        .setDescription('⏸️ **Playback is already paused!**');
+                        .setDescription('⏸️ **재생중인 음악이 멈춤**');
 
                     const sentMessage = await channel.send({ embeds: [alreadyPausedEmbed] });
                     setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
@@ -146,7 +146,7 @@ function initializePlayer(client) {
                     player.pause(true);
                     const pauseEmbed = new EmbedBuilder()
                         .setColor(config.embedColor)
-                        .setDescription('⏸️ **Playback has been paused!**');
+                        .setDescription('⏸️ **재생중인 음악이 멈춤**');
 
                     const sentMessage = await channel.send({ embeds: [pauseEmbed] });
                     setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
@@ -155,7 +155,7 @@ function initializePlayer(client) {
                 if (!player.paused) {
                     const alreadyResumedEmbed = new EmbedBuilder()
                         .setColor(config.embedColor)
-                        .setDescription('▶️ **Playback is already resumed!**');
+                        .setDescription('▶️ **멈춘음악이 다시실행됨**');
 
                     const sentMessage = await channel.send({ embeds: [alreadyResumedEmbed] });
                     setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
@@ -163,7 +163,7 @@ function initializePlayer(client) {
                     player.pause(false);
                     const resumeEmbed = new EmbedBuilder()
                         .setColor(config.embedColor)
-                        .setDescription('▶️ **Playback has been resumed!**');
+                        .setDescription('▶️ **멈춘음악이 다시실행됨**');
 
                     const sentMessage = await channel.send({ embeds: [resumeEmbed] });
                     setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
@@ -174,14 +174,14 @@ function initializePlayer(client) {
                     player.setVolume(Math.min(player.volume + 10, 100));
                     const volumeUpEmbed = new EmbedBuilder()
                         .setColor(config.embedColor)
-                        .setDescription(`🔊 **Volume increased by ${player.volume - oldVolume}% to ${player.volume}!**`);
+                        .setDescription(`🔊 **음량이 ${player.volume - oldVolume}% 만큼 커짐  /  현재 음량: ${player.volume}**`);
 
                     const sentMessage = await channel.send({ embeds: [volumeUpEmbed] });
                     setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
                 } else {
                     const maxVolumeEmbed = new EmbedBuilder()
                         .setColor(config.embedColor)
-                        .setDescription('🔊 **Volume is already at maximum!**');
+                        .setDescription('🔊 **음량이 이미 최대치임**');
 
                     const sentMessage = await channel.send({ embeds: [maxVolumeEmbed] });
                     setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
@@ -192,14 +192,14 @@ function initializePlayer(client) {
                     player.setVolume(Math.max(player.volume - 10, 10));
                     const volumeDownEmbed = new EmbedBuilder()
                         .setColor(config.embedColor)
-                        .setDescription(`🔉 **Volume decreased by ${oldVolume - player.volume}% to ${player.volume}!**`);
+                        .setDescription(`🔉 **음량이 ${oldVolume - player.volume}% 만큼 작아짐  /  현재음량: ${player.volume}**`);
 
                     const sentMessage = await channel.send({ embeds: [volumeDownEmbed] });
                     setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
                 } else {
                     const minVolumeEmbed = new EmbedBuilder()
                         .setColor(config.embedColor)
-                        .setDescription('🔉 **Volume is already at minimum!**');
+                        .setDescription('🔉 **음량이 이미 최저치임**');
 
                     const sentMessage = await channel.send({ embeds: [minVolumeEmbed] });
                     setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
@@ -262,7 +262,7 @@ function initializePlayer(client) {
             player.destroy();
             const queueEmbed = new EmbedBuilder()
                 .setColor(config.embedColor)
-                .setDescription('**Queue Songs ended! Disconnecting Bot!**');
+                .setDescription('*리스트에 추가된 음악들이 모두 끝남! 봇이 나가는중..**');
 
             await channel.send({ embeds: [queueEmbed] });
         }
@@ -275,14 +275,14 @@ function initializePlayer(client) {
             player.setLoop("queue");
             const loopEmbed = new EmbedBuilder()
                 .setColor(config.embedColor)
-                .setTitle("🔁 **Queue loop is activated!**");
+                .setTitle("🔁 **리스트 반복이 켜짐**");
             const sentMessage = await channel.send({ embeds: [loopEmbed] });
             setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
         } else {
             player.setLoop("track");
             const loopEmbed = new EmbedBuilder()
                 .setColor(config.embedColor)
-                .setTitle("🔁 **Track loop is activated!**");
+                .setTitle("🔁 **반복재생이 켜짐**");
             const sentMessage = await channel.send({ embeds: [loopEmbed] });
             setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
         }
@@ -292,7 +292,7 @@ function initializePlayer(client) {
         player.setLoop("none");
         const loopEmbed = new EmbedBuilder()
             .setColor(config.embedColor)
-            .setTitle("❌ **Loop is disabled!**");
+            .setTitle("❌ **반복재생 비활성화됨**");
         const sentMessage = await channel.send({ embeds: [loopEmbed] });
         setTimeout(() => sentMessage.delete().catch(console.error), config.embedTimeout * 1000);
     }
@@ -325,27 +325,27 @@ function initializePlayer(client) {
         return new ActionRowBuilder()
             .addComponents(
                 new ButtonBuilder()
-                    .setCustomId("loopToggle")
+                    .setCustomId("반복재생 토글")
                     .setEmoji('🔁')
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(disabled),
                 new ButtonBuilder()
-                    .setCustomId("disableLoop")
+                    .setCustomId("반복재생 비활성화")
                     .setEmoji('❌')
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(disabled),
                 new ButtonBuilder()
-                    .setCustomId("skipTrack")
+                    .setCustomId("스킵")
                     .setEmoji('⏭️')
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(disabled),
                 new ButtonBuilder()
-                    .setCustomId("showQueue")
+                    .setCustomId("리스트 보기")
                     .setEmoji('📜')
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(disabled),
                 new ButtonBuilder()
-                    .setCustomId("clearQueue")
+                    .setCustomId("리스트 비우기")
                     .setEmoji('🗑️')
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(disabled)
@@ -356,27 +356,27 @@ function initializePlayer(client) {
         return new ActionRowBuilder()
             .addComponents(
                 new ButtonBuilder()
-                    .setCustomId("stopTrack")
+                    .setCustomId("일시정지")
                     .setEmoji('⏹️')
                     .setStyle(ButtonStyle.Danger)
                     .setDisabled(disabled),
                 new ButtonBuilder()
-                    .setCustomId("pauseTrack")
+                    .setCustomId("끄기")
                     .setEmoji('⏸️')
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(disabled),
                 new ButtonBuilder()
-                    .setCustomId("resumeTrack")
+                    .setCustomId("재실행")
                     .setEmoji('▶️')
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(disabled),
                 new ButtonBuilder()
-                    .setCustomId("volumeUp")
+                    .setCustomId("볼륨업")
                     .setEmoji('🔊')
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(disabled),
                 new ButtonBuilder()
-                    .setCustomId("volumeDown")
+                    .setCustomId("볼륨다운")
                     .setEmoji('🔉')
                     .setStyle(ButtonStyle.Secondary)
                     .setDisabled(disabled)
