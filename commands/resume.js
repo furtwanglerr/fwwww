@@ -9,7 +9,7 @@ async function resume(client, interaction) {
             const errorEmbed = new EmbedBuilder()
                 .setColor('#ff0000')
                 .setTitle('Error')
-                .setDescription('❌ No active player found.');
+                .setDescription('재생중인 곡 없음');
 
             await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
             return;
@@ -19,7 +19,7 @@ async function resume(client, interaction) {
 
         const embed = new EmbedBuilder()
             .setColor(config.embedColor)
-            .setDescription('**▶️ Playback has been resumed!**');
+            .setDescription('**음악이 다시실행됨**');
 
         await interaction.reply({ embeds: [embed] });
 
@@ -28,7 +28,7 @@ async function resume(client, interaction) {
         const errorEmbed = new EmbedBuilder()
             .setColor('#ff0000')
             .setTitle('Error')
-            .setDescription('❌ An error occurred while processing your request.');
+            .setDescription('에러');
 
         await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
     }
@@ -36,7 +36,7 @@ async function resume(client, interaction) {
 
 module.exports = {
     name: "resume",
-    description: "Resume the current song",
+    description: "음악 다시실행",
     permissions: "0x0000000000000800",
     options: [],
     run: resume
