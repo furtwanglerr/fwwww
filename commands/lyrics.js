@@ -13,7 +13,7 @@ async function lyrics(client, interaction) {
             const errorEmbed = new EmbedBuilder()
                 .setColor('#ff0000')
                 .setTitle('Error')
-                .setDescription('❌ 재생중인 음악 없음');
+                .setDescription('재생중인 음악 없음');
 
             await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
             return;
