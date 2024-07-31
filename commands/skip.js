@@ -9,7 +9,7 @@ async function skip(client, interaction) {
             const errorEmbed = new EmbedBuilder()
                 .setColor('#ff0000')
                 .setTitle('Error')
-                .setDescription('❌ No active player found.');
+                .setDescription('에러');
 
             await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
             return;
@@ -19,7 +19,7 @@ async function skip(client, interaction) {
 
         const embed = new EmbedBuilder()
             .setColor(config.embedColor)
-            .setDescription('**⏭️ Player will play the next song!**');
+            .setDescription('**다음 곡 재생중..**');
 
         await interaction.reply({ embeds: [embed] });
 
@@ -28,7 +28,7 @@ async function skip(client, interaction) {
         const errorEmbed = new EmbedBuilder()
             .setColor('#ff0000')
             .setTitle('Error')
-            .setDescription('❌ An error occurred while processing your request.');
+            .setDescription('에러');
 
         await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
     }
@@ -36,7 +36,7 @@ async function skip(client, interaction) {
 
 module.exports = {
     name: "skip",
-    description: "Skip the current song",
+    description: "현재 재생중인 곡을 스킵",
     permissions: "0x0000000000000800",
     options: [],
     run: skip
