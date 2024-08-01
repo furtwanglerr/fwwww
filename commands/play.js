@@ -76,32 +76,32 @@ async function play(client, interaction) {
             new EmbedBuilder()
                 .setColor(config.embedColor)
                 .setAuthor({
-                    name: 'Request Update',
+                    name: '음악이 리스트에 추가됨',
                     iconURL: config.CheckmarkIcon,
                     url: config.SupportServer
                 })
-                .setDescription('**음악이 성공적으로 재생됨!**\n**버튼을 사용하여 재생설정**')
-                 .setFooter({ text: '음악 재생중!'}),
+                .setDescription('**음악 재생중!**')
+                 .setFooter({ text: '/skip을 사용하여 다음음악 재생'}),
 
             new EmbedBuilder()
                 .setColor(config.embedColor)
                 .setAuthor({
-                    name: 'Request Update',
+                    name: '음악이 리스트에 추가됨',
                     iconURL: config.CheckmarkIcon,
                     url: config.SupportServer
                 })
-                .setDescription('**음악이 성공적으로 재생됨!**\n**버튼을 사용하여 재생설정**')
-                 .setFooter({ text: '음악 재생중!'}),
+                .setDescription('**음악 재생중!**')
+                 .setFooter({ text: '/skip을 사용하여 다음음악 재생'}),
 
             new EmbedBuilder()
                 .setColor(config.embedColor)
                 .setAuthor({
-                    name: 'Request Update',
+                    name: '음악이 리스트에 추가됨',
                     iconURL: config.CheckmarkIcon,
                     url: config.SupportServer
                 })
-                .setDescription('**음악이 성공적으로 재생됨!**\n**버튼을 사용하여 재생설정**')
-                .setFooter({ text: '음악 재생중!'})
+                .setDescription('**음악 재생중!**')
+                .setFooter({ text: '/skip을 사용하여 다음음악 재생'})
         ];
 
         const randomIndex = Math.floor(Math.random() * embeds.length);
