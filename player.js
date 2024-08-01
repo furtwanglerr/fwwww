@@ -56,7 +56,7 @@ function initializePlayer(client) {
 
         const embed = new EmbedBuilder()
             .setAuthor({
-                name: 'Now Playing',
+                name: '현재재생중',
                 iconURL: config.MusicIcon
             })
             .setDescription('**설정:**\n 🔁 `반복재생`, ❌ `비활성화`, ⏭️ `스킵`, 📜 `리스트`, 🗑️ `비우기`\n ⏹️ `끄기`, ⏸️ `멈추기`, ▶️ `재실행`, 🔊 `+음량`, 🔉 `-음량`')
