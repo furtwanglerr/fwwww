@@ -17,7 +17,7 @@ module.exports = {
 [ /play    ] - 음악재생
 [ /pause   ] - 음악 일시정지
 [ /resume  ] - 음악 다시재생
-[ /skip    ] - 음악스킵 (리스트에 담긴 다음음악 재생)
+[ /skip    ] - 음악스킵(다음음악재생)
 [ /stop    ] - 음악끄기
 [ /np      ] - 현재재생중인 음악정보
 [ /volume  ] - 볼륨조정
@@ -28,10 +28,10 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setColor(config.embedColor)
-        .setTitle(`${botName} Help`)
+        .setTitle(`${botName} 도움말`)
         .setThumbnail(client.user.displayAvatarURL()) 
         .setDescription(helpDescription)
-        .setFooter({ text: `Prime Music v1.0`, iconURL: client.user.displayAvatarURL() }) 
+        .setFooter({ text: `신재봇`, iconURL: client.user.displayAvatarURL() }) 
       
 
       return interaction.reply({ embeds: [embed] });
