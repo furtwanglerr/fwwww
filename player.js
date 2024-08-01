@@ -262,7 +262,7 @@ function initializePlayer(client) {
             player.destroy();
             const queueEmbed = new EmbedBuilder()
                 .setColor(config.embedColor)
-                .setDescription('**Queue Songs ended! Disconnecting Bot!**');
+                .setDescription('**음악이 끝남! 봇이 나가는중..**');
 
             await channel.send({ embeds: [queueEmbed] });
         }
