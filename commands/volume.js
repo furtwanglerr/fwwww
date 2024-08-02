@@ -34,11 +34,11 @@ async function volume(client, interaction) {
 }
 
 module.exports = {
-    name: "음량",
+    name: "volume",
     description: "재생중인 음악의 음량설정",
     permissions: "0x0000000000000800",
     options: [{
-        name: '값',
+        name: 'value',
         description: '음량설정(0~100)',
         type: ApplicationCommandOptionType.Integer,
         required: true
