@@ -35,7 +35,7 @@ async function skip(client, interaction) {
 }
 
 module.exports = {
-    name: "skip",
+    name: "스킵",
     description: "현재 재생중인 곡을 스킵",
     permissions: "0x0000000000000800",
     options: [],
