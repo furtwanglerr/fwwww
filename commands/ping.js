@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js')
 const config = require("../config.js");
 
 module.exports = {
-  name: "ping",
+  name: "핑",
   description: "봇의 핑 확인",
   permissions: "0x0000000000000800",
   options: [],
