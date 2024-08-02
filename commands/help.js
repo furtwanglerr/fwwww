@@ -14,12 +14,12 @@ module.exports = {
 \`\`\`css
 사용 가능한 명령어:
 
-/재생 [음악제목]
-/정지
-/스킵
-/일시정지
-/다시시작
-/음량
+/play [음악제목]
+/stop
+/skip
+/pause
+/resume
+/volume
 /핑
 /재생정보
 \`\`\`
