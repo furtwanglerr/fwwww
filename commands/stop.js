@@ -36,7 +36,7 @@ async function stop(client, interaction) {
 }
 
 module.exports = {
-    name: "stop",
+    name: "정지",
     description: "재생중인 곡 멈추기",
     permissions: "0x0000000000000800",
     options: [],
