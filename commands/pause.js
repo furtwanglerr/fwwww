@@ -35,8 +35,8 @@ async function pause(client, interaction) {
 }
 
 module.exports = {
-    name: "pause",
-    description: "재생중인 곡 멈추기",
+    name: "일시정지",
+    description: "재생중인 곡 일시정지",
     permissions: "0x0000000000000800",
     options: [],
     run: pause
