@@ -119,11 +119,11 @@ async function play(client, interaction) {
 }
 
 module.exports = {
-    name: "재생",
+    name: "play",
     description: "링크나 제목으로 음악재생",
     permissions: "0x0000000000000800",
     options: [{
-        name: '제목',
+        name: 'name',
         description: '음악의 제목이나 링크를 입력하세요',
         type: ApplicationCommandOptionType.String,
         required: true
