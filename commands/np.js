@@ -51,8 +51,8 @@ async function nowPlaying(client, interaction) {
 }
 
 module.exports = {
-    name: "np",
-    description: "현재 재생중인 곡의 길이를 나타냄",
+    name: "현재재생",
+    description: "현재 재생중인 곡의 정보를 나타냄",
     permissions: "0x0000000000000800",
     options: [],
     run: nowPlaying,
