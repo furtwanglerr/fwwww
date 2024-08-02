@@ -2,8 +2,8 @@ const { EmbedBuilder } = require('discord.js');
 const config = require("../config.js");
 
 module.exports = {
-  name: "help",
-  description: "봇정보",
+  name: "도움말",
+  description: "봇 사용하는법",
   permissions: "0x0000000000000800",
   options: [],
   run: async (client, interaction) => {
@@ -14,14 +14,14 @@ module.exports = {
 \`\`\`css
 사용 가능한 명령어:
 
-/play    - 음악재생
-/pause   - 음악 일시정지
-/resume  - 음악 다시재생
-/skip    - 음악스킵(다음음악재생)
-/stop    - 음악끄기
-/np      - 현재재생중인 음악정보
-/volume  - 볼륨조정
-/ping    - 봇의 핑확인
+/재생 [음악제목]
+/정지
+/스킵
+/일시정지
+/다시시작
+/음량
+/핑
+/재생정보
 \`\`\`
       `;
 
@@ -30,7 +30,7 @@ module.exports = {
         .setTitle(`${botName} 도움말`)
         .setThumbnail(client.user.displayAvatarURL()) 
         .setDescription(helpDescription)
-        .setFooter({ text: `신재봇`, iconURL: client.user.displayAvatarURL() }) 
+        .setFooter({ text: `음악봇`, iconURL: client.user.displayAvatarURL() }) 
       
 
       return interaction.reply({ embeds: [embed] });
