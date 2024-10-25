@@ -8,7 +8,7 @@ module.exports = {
   options: [],
   run: async (client, interaction) => {
     try {
-      const rrr = Math.floor(Math.random() * (9999 - (-100) + 1)) - 100;
+      const rrr = Math.floor(Math.random() * (999 - (-999) + 1)) - 999;
 
       const embed = new EmbedBuilder()
         .setColor(config.embedColor)
