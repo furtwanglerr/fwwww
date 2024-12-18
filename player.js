@@ -24,7 +24,7 @@ function initializePlayer(client) {
             const guild = client.guilds.cache.get(guildId);
             if (guild) guild.shard.send(payload);
         },
-        defaultSearchPlatform: "ytmsearch",
+        defaultSearchPlatform: "scsearch",
         restVersion: "v3"
     });
 
