@@ -24,8 +24,8 @@ function initializePlayer(client) {
             const guild = client.guilds.cache.get(guildId);
             if (guild) guild.shard.send(payload);
         },
-        defaultSearchPlatform: "ytmsearch",
-        restVersion: "v3"
+        defaultSearchPlatform: "sfmsearch",
+        restVersion: "v4"
     });
 
     let currentTrackMessageId = null;
